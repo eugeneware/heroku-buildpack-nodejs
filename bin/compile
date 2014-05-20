@@ -78,9 +78,9 @@ fi
 # Handle npm's new cert bug
 # http://blog.npmjs.org/post/78085451721/npms-self-signed-certificate-is-no-more
 if [ ! -f "$build_dir/.npmrc" ]; then
-  status "Writing a custom .npmrc to circumvent npm bugs"
-  # use local npm server
-  echo "registry = http://npm.campjs.com" > "$build_dir/.npmrc"
+  local_npm="http://npm.campjs.com"
+  status "Set npm to use local server $local_npm"
+  echo "registry = $local_npm" > "$build_dir/.npmrc"
 fi
 
 # Scope config var availability only to `npm install`
