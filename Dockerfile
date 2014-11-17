@@ -1,4 +1,4 @@
-FROM heroku/cedar
+FROM progrium/cedarish
 MAINTAINER Eugene Ware <eugene@noblesamurai.com>
 ADD . /buildpack
 ADD ./start.sh /start.sh
