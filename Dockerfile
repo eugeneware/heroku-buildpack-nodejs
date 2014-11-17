@@ -1,11 +1,12 @@
 FROM heroku/cedar
 MAINTAINER Eugene Ware <eugene@noblesamurai.com>
-env HOME /app
-ENV PORT 5000
 ADD . /buildpack
 ADD ./start.sh /start.sh
-EXPOSE 5000
-
-ONBUILD ADD	.	/app
-ONBUILD RUN	/buildpack/bin/compile /app /tmp
-ONBUILD CMD	["/start.sh", "start", "web"]
+ONBUILD ADD . /app
+ONBUILD WORKDIR /app
+ONBUILD RUN /buildpack/bin/compile /app /tmp
+ONBUILD ENV HOME /app
+ONBUILD ENV PORT 5000
+ONBUILD EXPOSE 5000
+ONBUILD ENTRYPOINT	["/start.sh"]
+ONBUILD CMD ["start", "web"]
